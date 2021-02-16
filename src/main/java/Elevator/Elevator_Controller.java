@@ -7,6 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//controlls all elevators
 public class Elevator_Controller implements Runnable {
     private final static Logger logger = Logger.getLogger(Elevator_Controller.class.getName());
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class Web_Controller {
 
     @GetMapping("/")
+    //Setting the names of the Elevators on the Website
     public String index(Model model){
         model.addAttribute("elevatorOne", "Elevator One");
         model.addAttribute("elevatorTwo", "Elevator Two");

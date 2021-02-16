@@ -12,14 +12,12 @@ public class Main {
     private static int numberOfElevators = 7;
 
     public static void main(String[] args){
-        logger.log(Level.INFO, "Starting Elevator.Elevator Service");
-        logger.log(Level.INFO, "Starting Elevator.Elevator Controller");
         Elevator_Controller elevatorController = new Elevator_Controller(numberOfElevators);
         new Thread(elevatorController).start();
         SpringApplication.run(Main.class, args);
 
 
-
+        //Test Request
         Request requestOne = new Request(0, 27, Elevator_Direction.UP);
         elevatorController.addRequest(requestOne);
         Request requestTwo = new Request(5, 0);
