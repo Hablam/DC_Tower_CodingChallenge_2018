@@ -1,5 +1,5 @@
 # DC_Tower_CodingChallenge_2018
-##Run
+#Run
 You need Java 14.
 To run the code run the following command:
 
