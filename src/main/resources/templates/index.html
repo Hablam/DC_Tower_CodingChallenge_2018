@@ -5,9 +5,180 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<style>
+    .elevators {
+        width: 60%;
+        padding: 10px;
+    }
+
+    .legend {
+        width: 12%;
+        height: 200px;
+        float: left;
+    }
+    .one {
+        width: 12%;
+        height: 200px;
+        background: red;
+        float: left;
+    }
+
+    .two {
+        width: 12%;
+        height: 200px;
+        background: magenta;
+        float: left;
+    }
+
+    .three {
+        width: 12%;
+        height: 200px;
+        background: green;
+        float: left;
+    }
+
+    .four {
+        width: 12%;
+        height: 200px;
+        background: yellow;
+        float: left;
+    }
+    .five {
+        width: 12%;
+        height: 200px;
+        background: brown;
+        float: left;
+    }
+
+    .six {
+        width: 12%;
+        height: 200px;
+        background: gray;
+        float: left;
+    }
+    .seven {
+        width: 12%;
+        height: 200px;
+        background: cyan;
+        float: left;
+    }
+</style>
 <body>
-    <div id = "Elevator One">
-        <h3><span th:text="${elevatorOne}"></span></h3>
+<section class = "elevators" id = "Elevators">
+    <div class="legend" id="ElevatorLegend">
+        <h3>Elevator: </h3>
+        <p id="floorLegend">Current Floor: </p>
+        <p id="targetLegend">Target Floor: </p>
     </div>
+    <div class="one" id = "ElevatorOne">
+        <h3><span th:text="${elevatorOne}"></span></h3>
+        <p id="elevatorOneFloor">0</p>
+        <p id="elevatorOneTarget">0</p>
+    </div>
+    <div class="two" id = "ElevatorTwo">
+        <h3><span th:text="${elevatorTwo}"></span></h3>
+        <p id="elevatorTwoFloor">0</p>
+        <p id="elevatorTwoTarget">0</p>
+    </div>
+    <div class="three" id = "ElevatorThree">
+        <h3><span th:text="${elevatorThree}"></span></h3>
+        <p id="elevatorThreeFloor">0</p>
+        <p id="elevatorThreeTarget">0</p>
+    </div>
+    <div class="four" id = "ElevatorFour">
+        <h3><span th:text="${elevatorFour}"></span></h3>
+        <p id="elevatorFourFloor">0</p>
+        <p id="elevatorFourTarget">0</p>
+    </div>
+    <div class="five" id = "ElevatorFive">
+        <h3><span th:text="${elevatorFive}"></span></h3>
+        <p id="elevatorFiveFloor">0</p>
+        <p id="elevatorFiveTarget">0</p>
+    </div>
+    <div class="six" id = "ElevatorSix">
+        <h3><span th:text="${elevatorSix}"></span></h3>
+        <p id="elevatorSixFloor">0</p>
+        <p id="elevatorSixTarget">0</p>
+    </div>
+    <div class="seven" id = "ElevatorSeven">
+        <h3><span th:text="${elevatorSeven}"></span></h3>
+        <p id="elevatorSevenFloor">0</p>
+        <p id="elevatorSevenTarget">0</p>
+    </div>
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h3>Input</h3>
+        <label for="startFloor">Current Floor:</label>
+        <input id="startFloor" type="number" min="0" max="55"/>
+        <br>
+        <label for="targetFloor">Target Floor:</label>
+        <input id="targetFloor" type="number" min="0" max="55"/>
+        <button onclick="sendRequest()">Send</button>
+    </div>
+</section>
+<script>
+    function sendRequest(){
+        var startFloor = document.getElementById("startFloor").value;
+        var targetFloor = document.getElementById("targetFloor").value;
+        console.log(startFloor);
+        console.log(targetFloor);
+        const data = {startFloor, targetFloor};
+        const http = new XMLHttpRequest();
+        const url='/sendRequest';
+        http.open("POST", url, false);
+        http.setRequestHeader('Content-type', 'application/json');
+        http.send(JSON.stringify(data));
+        return false;
+    }
+</script>
+
+    <script>
+        const http1 = new XMLHttpRequest();
+        const http2 = new XMLHttpRequest();
+        const url_floor = '/getFloorUpdate';
+        const url_target = '/getTargetUpdate';
+        var elevatorFloors = [0,0,0,0,0,0,0];
+        var elevatorTargets = [0,0,0,0,0,0,0];
+        setInterval(function(){
+            http1.open("GET", url_floor);
+            http1.send();
+            http1.onreadystatechange = (e) => {
+                console.log(http1.responseText)
+                this.elevatorFloors = JSON.parse(http1.responseText);
+            }
+            document.getElementById("elevatorOneFloor").innerHTML = elevatorFloors[0];
+            document.getElementById("elevatorTwoFloor").innerHTML = elevatorFloors[1];
+            document.getElementById("elevatorThreeFloor").innerHTML = elevatorFloors[2];
+            document.getElementById("elevatorFourFloor").innerHTML = elevatorFloors[3];
+            document.getElementById("elevatorFiveFloor").innerHTML = elevatorFloors[4];
+            document.getElementById("elevatorSixFloor").innerHTML = elevatorFloors[5];
+            document.getElementById("elevatorSevenFloor").innerHTML = elevatorFloors[6];
+
+            http2.open("GET", url_target);
+            http2.send();
+            http2.onreadystatechange = (e) => {
+                console.log(http2.responseText)
+                this.elevatorTargets = JSON.parse(http2.responseText);
+            }
+            document.getElementById("elevatorOneTarget").innerHTML = elevatorTargets[0];
+            document.getElementById("elevatorTwoTarget").innerHTML = elevatorTargets[1];
+            document.getElementById("elevatorThreeTarget").innerHTML = elevatorTargets[2];
+            document.getElementById("elevatorFourTarget").innerHTML = elevatorTargets[3];
+            document.getElementById("elevatorFiveTarget").innerHTML = elevatorTargets[4];
+            document.getElementById("elevatorSixTarget").innerHTML = elevatorTargets[5];
+            document.getElementById("elevatorSevenTarget").innerHTML = elevatorTargets[6];
+        }, 1000)
+
+    </script>
 </body>
 </html>

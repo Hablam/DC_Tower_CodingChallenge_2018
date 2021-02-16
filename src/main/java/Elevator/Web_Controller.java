@@ -9,7 +9,13 @@ public class Web_Controller {
 
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("elevatorOne", Integer.toString(1));
+        model.addAttribute("elevatorOne", "Elevator One");
+        model.addAttribute("elevatorTwo", "Elevator Two");
+        model.addAttribute("elevatorThree", "Elevator Three");
+        model.addAttribute("elevatorFour", "Elevator Four");
+        model.addAttribute("elevatorFive", "Elevator Five");
+        model.addAttribute("elevatorSix", "Elevator Six");
+        model.addAttribute("elevatorSeven", "Elevator Seven");
         return "index";
     }
 }

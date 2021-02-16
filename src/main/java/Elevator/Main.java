@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 @SpringBootApplication
 public class Main {
     private final static Logger logger = Logger.getLogger(Main.class.getName());
-    private static int numberOfElevators = 1;
+    private static int numberOfElevators = 7;
 
     public static void main(String[] args){
         logger.log(Level.INFO, "Starting Elevator.Elevator Service");
@@ -20,27 +20,26 @@ public class Main {
 
 
 
-
-        /*Elevator.Request requestOne = new Elevator.Request(0, 27, Elevator.Elevator_Direction.UP);
+        Request requestOne = new Request(0, 27, Elevator_Direction.UP);
         elevatorController.addRequest(requestOne);
-        Elevator.Request requestTwo = new Elevator.Request(5, 0);
+        Request requestTwo = new Request(5, 0);
         elevatorController.addRequest(requestTwo);
-        Elevator.Request requestThree = new Elevator.Request(12, 0);
+        Request requestThree = new Request(12, 0);
         elevatorController.addRequest(requestThree);
-        Elevator.Request requestFour = new Elevator.Request(0, 18);
+        Request requestFour = new Request(0, 18);
         elevatorController.addRequest(requestFour);
-        Elevator.Request requestFive = new Elevator.Request(0, 34);
+        Request requestFive = new Request(0, 34);
         elevatorController.addRequest(requestFive);
-        Elevator.Request requestSix = new Elevator.Request(17, 0);
+        Request requestSix = new Request(17, 0);
         elevatorController.addRequest(requestSix);
-        Elevator.Request requestSeven = new Elevator.Request(0, 24);
+        Request requestSeven = new Request(0, 24);
         elevatorController.addRequest(requestSeven);
-        Elevator.Request requestEight = new Elevator.Request(8, 0);
+        Request requestEight = new Request(8, 0);
         elevatorController.addRequest(requestEight);
-        Elevator.Request requestNine = new Elevator.Request(0, 46);
+        Request requestNine = new Request(0, 46);
         elevatorController.addRequest(requestNine);
-        Elevator.Request requestTen = new Elevator.Request(0, 4);
-        elevatorController.addRequest(requestTen);*/
+        Request requestTen = new Request(0, 4);
+        elevatorController.addRequest(requestTen);
 
 
 

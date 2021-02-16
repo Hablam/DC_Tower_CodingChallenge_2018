@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 public class Elevator_Controller implements Runnable {
     private final static Logger logger = Logger.getLogger(Elevator_Controller.class.getName());
 
-    private List<Elevator> allElevators = new ArrayList<>();
-    private Queue<Request> requestQueue;
+    private static List<Elevator> allElevators = new ArrayList<>();
+    private static Queue<Request> requestQueue;
 
     public Elevator_Controller (int numberOfElevators){
         for(int i = 0; i<numberOfElevators; i++){
@@ -23,7 +23,23 @@ public class Elevator_Controller implements Runnable {
         this.requestQueue = new LinkedBlockingQueue<>();
     }
 
-    public void addRequest(Request request){
+    public static ArrayList<Integer> getAllElevatorFloors(){
+        ArrayList<Integer> elevatorFloors = new ArrayList<>();
+        for(Elevator elevator : allElevators){
+            elevatorFloors.add(elevator.getCurrent_Floor());
+        }
+        return elevatorFloors;
+    }
+
+    public static ArrayList<Integer> getAllTargetFloors(){
+        ArrayList<Integer> elevatorTargets = new ArrayList<>();
+        for(Elevator elevator : allElevators){
+            elevatorTargets.add(elevator.getTargetFloor());
+        }
+        return elevatorTargets;
+    }
+
+    public static void addRequest(Request request){
         requestQueue.add(request);
     }
 

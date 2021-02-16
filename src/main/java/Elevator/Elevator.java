@@ -17,6 +17,8 @@ public class Elevator implements Runnable{
         return currentFloor;
     }
 
+    public int getTargetFloor(){ return targetFloor;}
+
     public Elevator_Direction getDirection(){
         return direction;
     }
@@ -67,6 +69,11 @@ public class Elevator implements Runnable{
             }
             if (currentFloor == targetFloor) {
                 direction = Elevator_Direction.STILL;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -1,6 +1,5 @@
 package Elevator;
 
-import Elevator.Elevator_Direction;
 
 public class Request {
     private int startFloor;
